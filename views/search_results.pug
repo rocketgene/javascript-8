@@ -1,0 +1,25 @@
+doctype html
+head
+  title Searched Books
+  link(href='/stylesheets/style.css' rel='stylesheet')
+h1 Searched Books
+  h3=msg
+
+table
+  thead
+    tr
+      th Title
+      th Author
+      th Genre
+      th Year
+  tbody
+    each book in books
+      book
+        tr
+          td 
+            a(href='books/' + book.id)= book.title
+          td= book.author
+          td= book.genre
+          td= book.year 
+p
+  a.button(href='/books') Home
