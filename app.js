@@ -47,7 +47,7 @@ app.use( (err, req, res, next) => {
 });
 
 (async () => {
-  await sequelize.sync({ force: false });
+  await sequelize.sync({ force: true });
    try {
 
     const book1 = await Book.create({
