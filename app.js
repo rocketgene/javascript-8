@@ -47,7 +47,7 @@ app.use( (err, req, res, next) => {
 });
 
 (async () => {
-  await sequelize.sync({ force: true });
+  await sequelize.sync({ force: false });
    
 })();
 
