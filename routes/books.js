@@ -8,8 +8,8 @@ function asyncHandler(cb){
   return async(req, res, next) => {
     try {
       await cb(req, res, next)
-    } catch(error){
-      res.render("page_not_found");
+    } catch(err){
+      next(err);
     }
   }
 }
@@ -94,13 +94,9 @@ router.post('/new', asyncHandler(async (req, res) => {
 }));
 
 /* Edit book form. */
-router.get("/:id", asyncHandler(async(req, res) => {
+router.get("/:id", asyncHandler(async(req, res, next) => {
   const book = await Book.findByPk(req.params.id);
-  if(book) {
-    res.render("books/update", { book, title: "Edit Book" });      
-  } else {
-    res.render("page_not_found");
-  }
+  res.render("books/update", { book, title: "Edit Book" });      
 }));
 
 /* Update a book. */
@@ -131,5 +127,11 @@ router.post('/:id/delete', asyncHandler(async (req ,res) => {
     next(error)
   }
 }));
+
+/* Global error handler */
+router.use((err,req,res,next) => {
+  res.status(err.status || 500);
+  res.render("page_not_found", {error: err.message})
+})
 
 module.exports = router;
