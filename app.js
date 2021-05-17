@@ -48,53 +48,7 @@ app.use( (err, req, res, next) => {
 
 (async () => {
   await sequelize.sync({ force: true });
-   try {
-
-    const book1 = await Book.create({
-      title: 'title1',
-      author: 'author1',
-      genre: 'genre1',
-      year: 1881
-    });
-
-    const book2 = await Book.create({
-      title: 'title2',
-      author: 'author2',
-      genre: 'genre2',
-      year: 1882
-    });
-
-    const book3 = await Book.create({
-      title: 'title3',
-      author: 'author3',
-      genre: 'genre3',
-      year: 1883
-    });
-
-    const book4 = await Book.create({
-      title: 'title4',
-      author: 'author4',
-      genre: 'genre4',
-      year: 1884
-    });
-
-    const book5 = await Book.create({
-      title: 'title5',
-      author: 'author5',
-      genre: 'genre5',
-      year: 1885
-    });
-
-    const book6 = await Book.create({
-      title: 'title6',
-      author: 'author6',
-      genre: 'genre6',
-      year: 1886
-    });
-
-  } catch (error) {
-    console.error('Error connecting to the database: ', error);
-  }
+   
 })();
 
 
